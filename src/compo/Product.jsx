@@ -5,7 +5,7 @@ import { add, remove } from "../redux/slices/CartSlice";
 import { Link } from 'react-router-dom';
 
 export const Product = ({ post }) => {
-  const { cart } = useSelector((state) => state);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
   const addToCart = () => {
@@ -19,28 +19,28 @@ export const Product = ({ post }) => {
   };
 
   return (
-    <div className='flex flex-col items-center justify-between p-4 mt-6 mx-3 rounded-xl shadow-md border hover:scale-[1.03] transition-transform duration-300 ease-in bg-white sm:w-[260px]'>
+    <div className='w-full flex flex-col items-center justify-between p-3 mt-4 rounded-xl shadow-md border hover:scale-[1.03] transition-transform duration-300 ease-in bg-white'>
 
       {/* Title */}
-      <p className='text-gray-800 font-semibold text-sm text-center mt-2 truncate w-full'>
+      <p className='text-gray-800 font-semibold text-sm text-center mt-1 truncate w-full'>
         {post.title}
       </p>
 
       {/* Description */}
-      <p className='text-gray-500 font-normal text-xs text-center mt-1 mb-2 px-1'>
+      <p className='text-gray-500 font-normal text-xs text-center mt-1 mb-2 px-2'>
         {post.description.split(" ").slice(0, 10).join(" ") + "..."}
       </p>
 
       {/* Image */}
-      <div className='w-full h-40 flex items-center justify-center'>
+      <div className='w-full h-32 flex items-center justify-center'>
         <img src={post.image} alt="img" className='h-full object-contain' />
       </div>
 
       {/* Price + Buttons */}
-      <div className='flex flex-col items-center gap-3 mt-4 w-full'>
+      <div className='flex flex-col items-center gap-3 mt-3 w-full'>
         <p className='text-green-600 font-bold text-sm'>${post.price}</p>
 
-        <div className='flex flex-col gap-3 sm:flex-row sm:gap-2 w-full justify-center'>
+        <div className='flex flex-col gap-2 sm:flex-row sm:gap-2 w-full justify-center'>
           {
             cart.some((p) => p.id === post.id) ? (
               <button
